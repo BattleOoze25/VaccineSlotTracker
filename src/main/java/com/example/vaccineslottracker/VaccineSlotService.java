@@ -172,11 +172,11 @@ public class VaccineSlotService {
         slotsPrinted.put(key, true);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String message = "Time : " + dtf.format(now) + "\n";
+        String message = "Date : " + session.getDate();
         message += "SLOT AVAILABLE !!!\n";
         message += "State Name : " + centre.getState_name()+ "\n";
         message += "District Name : " + centre.getDistrict_name()+ "\n";
-        message += "Address: " + centre.getAddress() + "\n";
+        message += "Address: " + centre.getName() + ", " + centre.getAddress() + "\n";
         message += "Pin Code " + centre.getPincode() + "\n";
         message += "Available Capacity " + session.getAvailable_capacity() + "\n";
         message += "Min Age Limit " + session.getMin_age_limit() + "\n";
