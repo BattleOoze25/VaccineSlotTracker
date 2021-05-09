@@ -27,7 +27,7 @@ public class VaccineSlotService {
         this.restTemplate = restTemplateBuilder.build();
     }
     Map<String,Boolean> slotsPrinted = new HashMap<>();
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 20000)
     @GetMapping("/hello")
     public String sayHello() throws Exception {
         try {
