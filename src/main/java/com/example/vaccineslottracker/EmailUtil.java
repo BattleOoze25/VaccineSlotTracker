@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -29,6 +30,17 @@ public class EmailUtil {
     public static String sendSimpleMessage(String text){
         JavaMailSender emailSender = getJavaMailSender();
         String to = "harshit15agarwala@gmail.com";
+        String subject = "Vaccine Slot Available";
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("covidwarriorassam@gmail.com");
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
+        return "Done";
+    }
+    public static String sendSimpleMessageMultiple(String text, String to){
+        JavaMailSender emailSender = getJavaMailSender();
         String subject = "Vaccine Slot Available";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("covidwarriorassam@gmail.com");

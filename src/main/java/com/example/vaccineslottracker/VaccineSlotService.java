@@ -27,7 +27,7 @@ public class VaccineSlotService {
         this.restTemplate = restTemplateBuilder.build();
     }
     Map<String,Boolean> slotsPrinted = new HashMap<>();
-    @Scheduled(fixedRate = 30000)
+    @Scheduled(fixedRate = 15000)
     @GetMapping("/hello")
     public String sayHello() throws Exception {
         try {
@@ -36,7 +36,7 @@ public class VaccineSlotService {
             ObjectMapper objectMapper = new ObjectMapper();
             Urls urls = objectMapper.readValue(file,Urls.class);
             for(String url: urls.getUrls()){
-                checkUrls(url);
+            //    checkUrls(url);
             }
             sabkoBhejo();
             return "YAY!";
@@ -46,24 +46,73 @@ public class VaccineSlotService {
     }
     private void sabkoBhejo() throws Exception{
         try {
-            String filePath = "src/main/resources/usersInput.json";
+            String filePath = "src/main/resources/realUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ArrayList<District> districts = clientData.getDistricts();
-            ArrayList<String> districtEmails = new ArrayList<>();
             for(District district : districts){
                 String url = district.getUrl();
+                ArrayList<String> districtEmails = new ArrayList<>();
                 ArrayList<Client> clients = district.getClients();
                 for(Client client : clients) {
                     String email = client.getEmail();
                     districtEmails.add(email);
                 }
-            }
+                checkUrlsForDistrict(districtEmails,url);            }
         } catch (Exception ex){
             System.out.println("Na ho paa raha " + ex.getLocalizedMessage());
+        }
+    }
+
+    public String checkUrlsForDistrict(ArrayList<String>districtEmails,String url) throws Exception {
+        try{
+            System.out.println("Hitting " + url);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+            headers.add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36");
+            headers.add("Content-Type", "application/json");
+            HttpEntity entity = new HttpEntity("parameters", headers);
+            ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+            String json = result.getBody();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            ApiData apiData = objectMapper.readValue(json, ApiData.class);
+            checkAvailabilityforDistrict(apiData,districtEmails);
+            return json;
+        } catch (Exception ex){
+            return ex.getLocalizedMessage();
+        }
+    }
+    private void checkAvailabilityforDistrict(ApiData apiData,ArrayList<String>districtEmails){
+        ArrayList<Centres> centers= apiData.getCenters();
+        ArrayList<String> messages = new ArrayList<>();
+        for (Centres centre : centers) {
+            ArrayList<Session> sessions = centre.getSessions();
+            for(Session session : sessions){
+                if(session.getAvailable_capacity() > 1 && session.getMin_age_limit() == 18){
+                    String message = printSession(session,centre);
+                    if(message.equals("")){
+                        continue;
+                    }
+                    messages.add(message);
+                }
+            }
+        }
+        // No session available
+        if(messages.size() == 0) {
+            return;
+        }
+        String text = "Vaccine slot available for your district, login to cowin to book your slot\n";
+        text += "Link : https://selfregistration.cowin.gov.in/ \n";
+        for(String message : messages){
+            text += message + '\n';
+        }
+        for(String email : districtEmails){
+            EmailUtil.sendSimpleMessageMultiple(text,email);
         }
     }
     public String checkUrls(String url) throws Exception {
@@ -81,12 +130,12 @@ public class VaccineSlotService {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ApiData apiData = objectMapper.readValue(json, ApiData.class);
             checkAvailability(apiData);
-            return result.getBody();
+            return json;
         } catch (Exception ex){
             return ex.getLocalizedMessage();
         }
     }
-    private void checkAvailability(ApiData apiData){
+    public void checkAvailability(ApiData apiData){
         ArrayList<Centres> centers= apiData.getCenters();
         ArrayList<String> messages = new ArrayList<>();
         for (Centres centre : centers) {
