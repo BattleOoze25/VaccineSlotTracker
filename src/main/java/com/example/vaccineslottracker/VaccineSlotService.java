@@ -177,7 +177,9 @@ public class VaccineSlotService {
         message += "State Name : " + centre.getState_name()+ "\n";
         message += "District Name : " + centre.getDistrict_name()+ "\n";
         message += "Address: " + centre.getAddress() + "\n";
-        message += "available capacity " + session.getAvailable_capacity() + "\n";
+        message += "Pin Code " + centre.getPincode() + "\n";
+        message += "Available Capacity " + session.getAvailable_capacity() + "\n";
+        message += "Min Age Limit " + session.getMin_age_limit() + "\n";
         System.out.println(message);
         return message;
     }
