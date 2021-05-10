@@ -29,6 +29,11 @@
           "name" : "Swapan Saha",
           "email" : "swapansaha480@gmail.com",
           "phone" : "xxx"
+        },
+        {
+          "name" : "Sahil Sarawgi",
+          "email" : "sahil96erockz@gmail.com",
+          "phone" : "xxx"
         }
       ]
     },
@@ -45,12 +50,17 @@
         {
           "name" : "Varun Bongaigaon",
           "email" : "sbtc.bngn@gmail.com",
-          "phone" : "70025 00134"
+          "phone" : "7002500134"
         },
         {
           "name" : "Navin",
           "email" : "navin4agarwal@gmail.com",
           "phone" : "9435512898"
+        },
+        {
+          "name" : "Sahil Sarawgi",
+          "email" : "sahil96erockz@gmail.com",
+          "phone" : "xxx"
         }
       ]
     }

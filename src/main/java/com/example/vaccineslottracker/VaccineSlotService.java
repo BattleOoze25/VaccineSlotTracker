@@ -84,6 +84,7 @@ public class VaccineSlotService {
             checkAvailabilityforDistrict(apiData,districtEmails);
             return json;
         } catch (Exception ex){
+            System.out.println("Cant hit url, check scheduling frequency");
             return ex.getLocalizedMessage();
         }
     }
