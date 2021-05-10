@@ -39,7 +39,7 @@ public class EmailUtil {
         emailSender.send(message);
         return "Done";
     }
-    public static String sendSimpleMessageMultiple(String text, String to){
+    public static String sendSimpleMessageMultiple(String text, String[] to){
         JavaMailSender emailSender = getJavaMailSender();
         String subject = "Vaccine Slot Available";
         SimpleMailMessage message = new SimpleMailMessage();

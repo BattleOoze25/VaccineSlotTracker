@@ -35,9 +35,6 @@ public class VaccineSlotService {
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             Urls urls = objectMapper.readValue(file,Urls.class);
-            for(String url: urls.getUrls()){
-            //    checkUrls(url);
-            }
             sabkoBhejo();
             return "YAY!";
         } catch(Exception ex) {
@@ -46,7 +43,7 @@ public class VaccineSlotService {
     }
     private void sabkoBhejo() throws Exception{
         try {
-            String filePath = "src/main/resources/realUsersInput.json";
+            String filePath = "src/main/resources/realusersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
@@ -94,7 +91,9 @@ public class VaccineSlotService {
         for (Centres centre : centers) {
             ArrayList<Session> sessions = centre.getSessions();
             for(Session session : sessions){
-                if(session.getAvailable_capacity() > 1 && session.getMin_age_limit() == 18){
+                int available_capacity = session.getAvailable_capacity();
+                int min_age_limit = session.getMin_age_limit();
+                if(available_capacity > 1 && min_age_limit == 18){
                     String message = printSession(session,centre);
                     if(message.equals("")){
                         continue;
@@ -112,55 +111,11 @@ public class VaccineSlotService {
         for(String message : messages){
             text += message + '\n';
         }
-        for(String email : districtEmails){
-            EmailUtil.sendSimpleMessageMultiple(text,email);
-        }
+        String[] emails = new String[districtEmails.size()];
+        emails = districtEmails.toArray(emails);
+        EmailUtil.sendSimpleMessageMultiple(text,emails);
     }
-    public String checkUrls(String url) throws Exception {
-        try{
-            System.out.println("Hitting " + url);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-            headers.add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36");
-            headers.add("Content-Type", "application/json");
-            HttpEntity entity = new HttpEntity("parameters", headers);
-            ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-            String json = result.getBody();
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            ApiData apiData = objectMapper.readValue(json, ApiData.class);
-            checkAvailability(apiData);
-            return json;
-        } catch (Exception ex){
-            return ex.getLocalizedMessage();
-        }
-    }
-    public void checkAvailability(ApiData apiData){
-        ArrayList<Centres> centers= apiData.getCenters();
-        ArrayList<String> messages = new ArrayList<>();
-        for (Centres centre : centers) {
-            ArrayList<Session> sessions = centre.getSessions();
-            for(Session session : sessions){
-                if(session.getAvailable_capacity() > 1 && session.getMin_age_limit() == 18){
-                    String message = printSession(session,centre);
-                    if(message.equals("")){
-                        continue;
-                    }
-                    messages.add(message);
-                }
-            }
-        }
-        //
-        if(messages.size() == 0) {
-            return;
-        }
-        String text = "";
-        for(String message : messages){
-            text += message + '\n';
-        }
-        EmailUtil.sendSimpleMessage(text);
-    }
+
     private String printSession(Session session, Centres centre) {
 
         int centre_id = centre.getCenter_id();
