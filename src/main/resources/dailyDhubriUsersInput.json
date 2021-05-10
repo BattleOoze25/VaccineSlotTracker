@@ -1,0 +1,36 @@
+{
+  "districts" : [
+    {
+      "name": "Dhubri",
+      "code": "59",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=59&date=12-05-2021",
+      "clients" : [
+        {
+          "name" : "Harshit",
+          "email" : "harshit15agarwala@gmail.com",
+          "phone" : "8486079120"
+        },
+        {
+          "name" : "Navaratna",
+          "email" : "jishuagarwala@gmail.com",
+          "phone" : "8011724480"
+        },
+        {
+          "name" : "Giridhari",
+          "email" : "giridharidhubri@gmail.com",
+          "phone" : "9435129764"
+        },
+        {
+          "name" : "Ragini",
+          "email" : "ragsghy8@gmail.com",
+          "phone" : "9435326605"
+        },
+        {
+          "name" : "Amit",
+          "email" : "amit.kumpawat456@gmail.com",
+          "phone" : "xxx"
+        }
+      ]
+    }
+  ]
+}
