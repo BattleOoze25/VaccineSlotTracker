@@ -29,19 +29,7 @@ public class VaccineSlotService {
     Map<String,Boolean> slotsPrinted = new HashMap<>();
     @Scheduled(fixedRate = 20000)
     @GetMapping("/hello")
-    public String sayHello() throws Exception {
-        try {
-            String filePath = "src/main/resources/Urls.json";
-            File file = new File(filePath);
-            ObjectMapper objectMapper = new ObjectMapper();
-            Urls urls = objectMapper.readValue(file,Urls.class);
-            sabkoBhejo();
-            return "YAY!";
-        } catch(Exception ex) {
-            return  ex.getLocalizedMessage();
-        }
-    }
-    private void sabkoBhejo() throws Exception{
+    private void sendAlerts() throws Exception{
         try {
             String filePath = "src/main/resources/realusersInput.json";
             File file = new File(filePath);
