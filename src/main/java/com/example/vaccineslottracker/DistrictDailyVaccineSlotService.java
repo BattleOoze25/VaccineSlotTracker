@@ -68,14 +68,14 @@ public class DistrictDailyVaccineSlotService {
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             DistrictData districtData = objectMapper.readValue(json, DistrictData.class);
-            checkAvailabilityforDistrictDaily(districtData,districtEmails);
+            checkAvailabilityForDistrictDaily(districtData,districtEmails);
             return json;
         } catch (Exception ex){
             System.out.println("Cant hit url, check scheduling frequency");
             return ex.getLocalizedMessage();
         }
     }
-    private void checkAvailabilityforDistrictDaily(DistrictData districtData,ArrayList<String>districtEmailsDaily){
+    private void checkAvailabilityForDistrictDaily(DistrictData districtData,ArrayList<String>districtEmailsDaily){
         ArrayList<DistrictSessions> districtSessions= districtData.getDistrictSessions();
         ArrayList<String> messagesDaily = new ArrayList<>();
 

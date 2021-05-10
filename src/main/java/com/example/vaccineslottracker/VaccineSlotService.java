@@ -66,14 +66,14 @@ public class VaccineSlotService {
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ApiData apiData = objectMapper.readValue(json, ApiData.class);
-            checkAvailabilityforDistrict(apiData,districtEmails);
+            checkAvailabilityForDistrict(apiData,districtEmails);
             return json;
         } catch (Exception ex){
             System.out.println("Cant hit url, check scheduling frequency");
             return ex.getLocalizedMessage();
         }
     }
-    private void checkAvailabilityforDistrict(ApiData apiData,ArrayList<String>districtEmails){
+    private void checkAvailabilityForDistrict(ApiData apiData,ArrayList<String>districtEmails){
         ArrayList<Centres> centers= apiData.getCenters();
         ArrayList<String> messages = new ArrayList<>();
         for (Centres centre : centers) {
