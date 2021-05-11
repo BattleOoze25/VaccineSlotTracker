@@ -3,7 +3,7 @@
     {
       "name": "Bongaigaon",
       "code": "57",
-      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=11-05-2021",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=12-05-2021",
       "clients" : [
         {
           "name" : "Harshit",
@@ -45,7 +45,7 @@
     {
       "name": "Kamrup Metropolitan",
       "code": "49",
-      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=49&date=11-05-2021",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=49&date=12-05-2021",
       "clients" : [
         {
           "name" : "Harshit",
@@ -177,7 +177,7 @@
     {
       "name": "Chirang",
       "code": "58",
-      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=58&date=11-05-2021",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=58&date=12-05-2021",
       "clients" : [
         {
           "name" : "Harshit",

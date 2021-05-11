@@ -31,7 +31,7 @@ public class VaccineSlotService {
     @GetMapping("/hello")
     private void sendAlerts() throws Exception{
         try {
-            String filePath = "src/main/resources/realusersInput.json";
+            String filePath = "src/main/resources/realUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
