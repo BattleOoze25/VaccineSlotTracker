@@ -27,11 +27,11 @@ public class VaccineSlotService {
         this.restTemplate = restTemplateBuilder.build();
     }
     Map<String,Boolean> slotsPrinted = new HashMap<>();
-    @Scheduled(fixedRate = 20000)
+    @Scheduled(fixedRate = 8000)
     @GetMapping("/hello")
     private void sendAlerts() throws Exception{
         try {
-            String filePath = "src/main/resources/realUsersInput.json";
+            String filePath = "src/main/resources/customUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);

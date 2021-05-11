@@ -1,0 +1,68 @@
+{
+  "districts" : [
+    {
+      "name": "Dhubri",
+      "code": "59",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=59&date=12-05-2021",
+      "clients" : [
+        {
+          "name" : "Harshit",
+          "email" : "harshit15agarwala@gmail.com",
+          "phone" : "8486079120"
+        },
+        {
+          "name" : "Navaratna",
+          "email" : "jishuagarwala@gmail.com",
+          "phone" : "8011724480"
+        },
+        {
+          "name" : "Giridhari",
+          "email" : "giridharidhubri@gmail.com",
+          "phone" : "9435129764"
+        },
+        {
+          "name" : "Ragini",
+          "email" : "ragsghy8@gmail.com",
+          "phone" : "9435326605"
+        },
+        {
+          "name" : "Amit",
+          "email" : "amit.kumpawat456@gmail.com",
+          "phone" : "xxx"
+        },
+        {
+          "name" : "Arun Chirania",
+          "email" : "chirania.arun968@gmail.com",
+          "phone" : "xxx"
+        }
+      ]
+    },
+    {
+      "name": "Cachar",
+      "code": "66",
+      "url": "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=66&date=12-05-2021",
+      "clients" : [
+        {
+          "name" : "Harshit",
+          "email" : "harshit15agarwala@gmail.com",
+          "phone" : "8486079120"
+        },
+        {
+          "name" : "Navaratna",
+          "email" : "jishuagarwala@gmail.com",
+          "phone" : "8011724480"
+        },
+        {
+          "name" : "Alka",
+          "email" : "alkanag31@gmail.com",
+          "phone" : "xxx"
+        },
+        {
+          "name" : "Abhishek Ray",
+          "email" : "rayabhisek22@gmail.com",
+          "phone" : "xxx"
+        }
+      ]
+    }
+  ]
+}

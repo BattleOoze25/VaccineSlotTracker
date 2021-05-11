@@ -64,6 +64,11 @@
           "name" : "Shivam",
           "email" : "shivamsingh20_ug@ece.nits.ac.in",
           "phone" : "xxx"
+        },
+        {
+          "name" : "Yogesh",
+          "email" : "yogeshjain1@rediffmail.com",
+          "phone" : "xxx"
         }
       ]
     }
