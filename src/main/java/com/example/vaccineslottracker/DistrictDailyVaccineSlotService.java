@@ -33,11 +33,11 @@ public class DistrictDailyVaccineSlotService {
     }
     Map<String,Boolean> slotsPrintedDaily = new HashMap<>();
     @GetMapping("/dailyhello")
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 20000)
 
     private void sendAlertsDaily() throws Exception{
         try {
-            String filePath = "src/main/resources/dailyGuwahatiUsersInput.json";
+            String filePath = "src/main/resources/dailyUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
