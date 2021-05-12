@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +33,11 @@ public class DistrictDailyVaccineSlotService {
     }
     Map<String,Boolean> slotsPrintedDaily = new HashMap<>();
     @GetMapping("/dailyhello")
+    @Scheduled(fixedRate = 5000)
+
     private void sendAlertsDaily() throws Exception{
         try {
-            String filePath = "src/main/resources/realUsersInput.json";
+            String filePath = "src/main/resources/dailyGuwahatiUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
