@@ -37,7 +37,7 @@ public class DistrictDailyVaccineSlotService {
 
     private void sendAlertsDaily() throws Exception{
         try {
-            String filePath = "src/main/resources/dailyUsersInput.json";
+            String filePath = "src/main/resources/customDailyUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
