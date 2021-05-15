@@ -33,7 +33,7 @@ public class DistrictDailyVaccineSlotService {
     }
     Map<String,Boolean> slotsPrintedDaily = new HashMap<>();
     @GetMapping("/dailyhello")
-    @Scheduled(fixedRate = 20000)
+    @Scheduled(fixedRate = 16000)
 
     private void sendAlertsDaily() throws Exception{
         try {
