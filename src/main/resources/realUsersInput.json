@@ -173,6 +173,11 @@
           "name" : "Ayush",
           "email" : "jainayush3008@gmail.com",
           "phone" : "xxx"
+        },
+        {
+          "name" : "Yash",
+          "email" : "yashzain28@gmail.com",
+          "phone" : "xxx"
         }
 
       ]
@@ -236,7 +241,7 @@
         },
         {
           "name" : "Suvadip",
-          "email" : "suvadiproy@gmail.com",
+          "email" : "suvadiproy5@gmail.com",
           "phone" : "xxx"
         },{
           "name" : "Sahil Sarawgi",
@@ -249,13 +254,12 @@
           "phone" : "xxx"
         },
         {
-<<<<<<< HEAD
-          "name" : "abhinav",
-          "email" : "singhiabhinav18@gmail.com",
-=======
+          "name": "abhinav",
+          "email": "singhiabhinav18@gmail.com"
+        },
+        {
           "name" : "Abesh",
           "email" : "abesh.r.63@gmail.com",
->>>>>>> 39e300942fc3e1fbe342956ef21d20f3e53ac49e
           "phone" : "xxx"
         }
       ]
