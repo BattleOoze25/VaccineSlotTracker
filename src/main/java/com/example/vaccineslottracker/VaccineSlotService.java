@@ -34,6 +34,7 @@ public class VaccineSlotService {
             String filePath = "src/main/resources/realUsersInput.json";
             File file = new File(filePath);
             ObjectMapper objectMapper = new ObjectMapper();
+            // map iske wjhse ho rh
             ClientData clientData = objectMapper.readValue(file,ClientData.class);
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -51,11 +52,12 @@ public class VaccineSlotService {
             System.out.println("Na ho paa raha " + ex.getLocalizedMessage());
         }
     }
-
     public String checkUrlsForDistrict(ArrayList<String>districtEmails,String url) throws Exception {
         try{
+            //http calls padhna hai.
             System.out.println("Hitting " + url);
             HttpHeaders headers = new HttpHeaders();
+            // why header are required
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
             headers.add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36");
             headers.add("Content-Type", "application/json");
